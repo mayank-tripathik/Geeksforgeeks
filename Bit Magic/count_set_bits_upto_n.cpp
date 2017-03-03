@@ -15,11 +15,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int set_bits(int x){
-    int count=__builtin_popcount(x);
-    return count;
-}
-
 void populate(vector<int> &arr,vector<int> &cum){
     arr[0]=0;
     cum[0]=0;
