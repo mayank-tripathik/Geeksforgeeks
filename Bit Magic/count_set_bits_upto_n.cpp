@@ -6,10 +6,13 @@
  * Best approach : O(logn) : Recursion occurs at most logn times
  */
 
+
+
 /*
  * Improved O(n) approach
  */
- #include <bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
 
 int set_bits(int x){
@@ -56,13 +59,15 @@ int main() {
 	return 0;
 }
  
- 
+
+
+
 /*
  * Best solution
  */
+
 #include<bits/stdc++.h>
 using namespace std;
-
 
 int count_set_bits_upto_n(int n){
     if(n==0)
