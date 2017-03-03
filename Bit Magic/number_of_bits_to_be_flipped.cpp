@@ -17,7 +17,7 @@ int main() {
 	    int a,b;
 	    cin>>a>>b;
 	    int n=(a ^ b);
-      n=__builtin_popcount(n);
+	    n=__builtin_popcount(n);
 	    cout<<n<<endl;
 	}
 	return 0;
