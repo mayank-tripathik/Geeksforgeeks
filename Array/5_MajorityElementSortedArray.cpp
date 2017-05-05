@@ -15,7 +15,6 @@ int binarySearch(vector<int> &arr, int x, int low, int high){
 		if(high<low)
 			return -1;
 		int mid=(low+high)/2;
-		cout<<low<<" "<<mid<<" "<<high<<endl;
 		if ((mid == 0 || x > arr[mid-1]) && (arr[mid] == x))
             return mid;
 		else if(arr[mid]<x)
@@ -29,7 +28,6 @@ void majorityElementSortedArray(vector<int> &arr, int element){
 	int n=arr.size();
 	int elementIndex=binarySearch(arr,element,0,n-1);
 	int nextIndex=elementIndex+(n/2);
-	cout<<elementIndex<<endl;
 	if(elementIndex!=-1)
 		if((nextIndex<=(n-1)) && arr[nextIndex]==element)
 			cout<<"Given element is the majority element\n";
