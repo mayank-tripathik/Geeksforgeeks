@@ -45,7 +45,7 @@ int largestSumContiguousSubarray(vector<int> &a){
 */
 
 //Handles every case
-int largestSumContiguousSubarray1(vector<int> &arr){
+int largestSumContiguousSubarray(vector<int> &arr){
 	int maximumSum=INT_MIN,currentSum=0;
 	int start=0,end=0,current_start=0;
 	for(int i=0;i<arr.size();i++){
