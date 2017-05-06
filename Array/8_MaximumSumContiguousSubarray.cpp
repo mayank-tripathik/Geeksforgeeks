@@ -17,7 +17,7 @@ using namespace std;
 */
 
 //Handles only cases where array has atleast one positive number
-int largestSumContiguousSubarray(vector<int> &arr){
+/*int largestSumContiguousSubarray(vector<int> &arr){
 	int maximumSum=0,currentSum;
 	for(int i=0;i<arr.size();i++){
 		currentSum+=arr[i];
@@ -31,20 +31,6 @@ int largestSumContiguousSubarray(vector<int> &arr){
 }
 
 
-//Handles every case
-int largestSumContiguousSubarray(vector<int> &arr){
-	int maximumSum=INT_MIN,currentSum=0;
-	for(int i=0;i<arr.size();i++){
-		currentSum+=arr[i];
-		if(currentSum>maximumSum)
-			maximumSum=currentSum;
-		if(currentSum<0)
-			currentSum=0;
-		cout<<currentSum<<" "<<maximumSum<<endl;
-	}
-	return maximumSum;
-}
-
 int largestSumContiguousSubarray(vector<int> &a){
 	int max_so_far = a[0];
 	int curr_max = a[0];
@@ -55,6 +41,22 @@ int largestSumContiguousSubarray(vector<int> &a){
 		cout<<curr_max<<" "<<max_so_far<<endl;
 	}
 	return max_so_far;
+}
+*/
+
+//Handles every case
+int largestSumContiguousSubarray1(vector<int> &arr){
+	int maximumSum=INT_MIN,currentSum=0;
+	int start=0,end=0,current_start=0;
+	for(int i=0;i<arr.size();i++){
+		currentSum+=arr[i];
+		if(currentSum>maximumSum)
+			maximumSum=currentSum,start=current_start,end=i;
+		if(currentSum<0)
+			currentSum=0,current_start=i+1;
+	}
+	cout<<start<<" "<<end<<endl;
+	return maximumSum;
 }
 
 
