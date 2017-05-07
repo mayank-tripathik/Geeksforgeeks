@@ -62,3 +62,53 @@ int main(){
 		mergeSortedArray(arr1,arr2);
 	}
 }
+
+
+
+/* 
+ * Problem: Given two sorted arrays of size n and m, merge them so that resultant array is sorted
+ * Solution : It can be solved in O(m+n) complexity if O(m+n) extra space is used. 
+ * Compare elements of two arrays and put the small one in new array.
+ * Complication arising due to difference in array size can be handled by adding some sentinel (ex INT_MAX) to arrays end.
+ */
+
+#include<bits/stdc++.h>
+using namespace std;
+#define SENTINEL INT_MAX
+
+void print(vector<int> &arr){
+	for(int i=0;i<arr.size();i++)
+		cout<<arr[i]<<" ";
+	cout<<endl;
+}
+
+void mergeSortedArray(vector<int> &arr1, vector<int> &arr2){
+	vector<int> aux;
+	arr1.push_back(SENTINEL);
+	arr2.push_back(SENTINEL);
+	for(int i=0,j=0;i<arr1.size();){
+		if(arr1[i]<=arr2[j])
+			aux.push_back(arr1[i++]);
+		else
+			aux.push_back(arr2[j++]);
+	}
+	aux.pop_back();
+	print(aux);
+}
+
+int main(){
+	int test;
+	cin>>test;
+	while(test--){
+		int n,m;
+		cin>>n;
+		vector<int> arr1(n);
+		for(int i=0;i<n;i++)
+			cin>>arr1[i];
+		cin>>m;
+		vector<int> arr2(m);
+		for(int i=0;i<m;i++)
+			cin>>arr2[i];
+		mergeSortedArray(arr1,arr2);
+	}
+}
