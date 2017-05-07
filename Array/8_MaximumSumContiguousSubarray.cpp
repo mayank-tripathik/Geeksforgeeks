@@ -44,7 +44,6 @@ int largestSumContiguousSubarray(vector<int> &a){
 }
 */
 
-//Handles every case
 int largestSumContiguousSubarray(vector<int> &arr){
 	int maximumSum=INT_MIN,currentSum=0;
 	int start=0,end=0,current_start=0;
@@ -59,6 +58,19 @@ int largestSumContiguousSubarray(vector<int> &arr){
 	return maximumSum;
 }
 
+int smallestSumContiguousSubarray(vector<int> &arr){
+	int minimumSum=INT_MAX,currentSum=0;
+	int start=0,end=0,current_start=0;
+	for(int i=0;i<arr.size();i++){
+		currentSum+=arr[i];
+		if(currentSum<minimumSum)
+			minimumSum=currentSum,start=current_start,end=i;
+		if(currentSum>0)
+			currentSum=0,current_start=i+1;
+	}
+	cout<<start<<" "<<end<<endl;
+	return minimumSum;
+}
 
 int main(){
 	int test;
@@ -70,5 +82,6 @@ int main(){
 		for(int i=0;i<n;i++)
 			cin>>arr[i];
 		cout<<largestSumContiguousSubarray(arr)<<endl;
+		cout<<smallestSumContiguousSubarray(arr)<<endl;
 	}
 }
