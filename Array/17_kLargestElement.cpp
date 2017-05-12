@@ -9,6 +9,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+void print(vector<int> &arr, int low, int high){
+	for(int i=low;i<=high;i++)
+		cout<<arr[i]<<" ";
+	cout<<endl;
+}
+
 class maxHeap{
 	vector<int> arr;
 public:
@@ -25,17 +31,17 @@ public:
 		arr.push_back(x);
 	}
 	void heapify(int i){
-		int maxChild;
-		if(arr[leftChild(i)]>arr[rightChild(i)])
-			maxChild=leftChild(i);
-		else
+		int maxChild=i;
+		if(rightChild(i)<arr.size() && arr[leftChild(i)]<arr[rightChild(i)])
 			maxChild=rightChild(i);
-		if(arr[maxChild]>arr[i])
+		else if(leftChild(i)<arr.size())
+			maxChild=leftChild(i);
+		if(arr[maxChild]>arr[i]){
 			swap(arr[i],arr[maxChild]);
-		if(maxChild<arr.size()/2)
 			heapify(maxChild);
+		}
 	}
-	void create(){
+	void build(){
 		for(int i=arr.size()/2;i>=0;i--){
 			heapify(i);
 		}
@@ -45,7 +51,7 @@ public:
 			cout<<arr[i]<<" ";
 		cout<<endl;
 	}
-	int getTop(){
+	int extract(){
 		int temp=arr[0];
 		swap(arr[0],arr[arr.size()-1]);
 		arr.pop_back();
@@ -63,10 +69,12 @@ void kLargestELementInArray(int n){
 		heap.insert(x);
 	}
 	cin>>k;
-	heap.create();
+	heap.build();
+	heap.print();
 	cout<<"Top k elements are:"<<endl;
-	for(int i=0;i<k;i++)
-		cout<<heap.getTop()<<endl;
+	for(int i=0;i<k;i++){
+		cout<<heap.extract()<<endl;
+	}
 }
 
 int main(){
