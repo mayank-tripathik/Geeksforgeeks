@@ -9,12 +9,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void print(vector<int> &arr, int low, int high){
-	for(int i=low;i<=high;i++)
-		cout<<arr[i]<<" ";
-	cout<<endl;
-}
-
 class maxHeap{
 	vector<int> arr;
 public:
