@@ -1,5 +1,5 @@
 /*
- * Given an array of numbers and a number x , find the ceiling and floor of x in array
+ * Given an sorted array of numbers and a number x , find the ceiling and floor of x in array
  * Ceiling is the smallest number greater than or equal to x
  * Floor is the largest number smaller than or equal to x
  * Solution : One is simple linear approach where we search for x and report it if found, otherwise search for number just greater
