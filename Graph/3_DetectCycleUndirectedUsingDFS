@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<bool> visited;
+vector<int> parent;
+void dfs(vector<list<int> > &graph, int u){
+	visited[u]=true;
+	cout<<"u:"<<u<<endl;
+	list<int>::iterator itr;
+	for(itr=graph[u].begin();itr!=graph[u].end();itr++){
+		int v=(*itr);
+		if(!visited[v]){
+			cout<<"v:"<<v<<endl;
+			parent[v]=u;
+			return dfs(graph,v);
+		}
+		else if(visited[v] && parent[u]!=v){
+			cout<<"Cycle exist\n";
+		}
+	}
+}
+
+void hasCycle(vector<list<int> > &graph){
+	int n=graph.size();
+	visited.resize(n,false);
+	parent.resize(n,-1);
+	dfs(graph,1);
+}
+
+int main(){
+	int test;
+	cin>>test;
+	while(test--){
+		int n,e;
+		cin>>n>>e;
+		vector<list<int> > graph(n+1);
+		for(int i=0;i<e;i++){
+			int u,v;
+			cin>>u>>v;
+			graph[u].push_back(v);
+			graph[v].push_back(u);
+		}
+		hasCycle(graph);
+	}
+}
