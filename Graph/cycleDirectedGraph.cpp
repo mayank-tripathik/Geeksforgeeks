@@ -1,43 +1,69 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector<bool> visited;
-vector<int> start;
-vector<int> finish;
-int counter;
-bool dfs(vector<list<int> > &graph, int u){
-	visited[u]=true;
-	counter++;
-	start[u]=counter;
-	cout<<"start of u:"<<u<<" is set as:"<<start[u]<<endl;
-	cout<<"u:"<<u<<endl;
-	list<int>::iterator itr;
-	for(itr=graph[u].begin();itr!=graph[u].end();itr++){
-		int v=(*itr);
-		if(!visited[v]){
-			return dfs(graph,v);
-		}
-		else{
-			cout<<"AAAAAAAAAAAAAAAAAlerttttttttttt--\n"<<endl;
-			cout<<"start u:"<<u<<" is:"<<start[u]<<" finish u:"<<finish[u]<<endl;
-			cout<<"start v:"<<v<<" is:"<<start[v]<<" finish v:"<<finish[v]<<endl;
-			if(start[u]>start[v] && finish[v]==0){
-				cout<<"inside\n";
-				return true;
+vector<int> recstack;
+#define AUTO list<int>::iterator
+
+enum color
+{
+	WHITE,GRAY,BLACK
+};
+
+
+bool dfsIterative(vector<list<int> > &graph, int u){
+	int n=graph.size();
+	vector<int> color(n,WHITE);
+	stack<int> s;
+	s.push(u);
+	while(!s.empty())
+	{
+		int u=s.top();s.pop();				
+		if(color[u]==WHITE)
+		{
+			color[u]=GRAY;
+			s.push(u);
+			AUTO itr;
+			for(itr=graph[u].begin();itr!=graph[u].end();itr++)
+			{
+				int v=(*itr);
+				if(color[v]==WHITE){
+					s.push(v);
+				}
+				else if(color[v]==GRAY){
+					cout<<"cycle exits!\n";
+					return true;
+				}
 			}
 		}
+		else if(color[u]==GRAY){
+			color[u]=BLACK;
+		}
 	}
-	counter++;
-	finish[u]=counter;
-	cout<<"finish of u:"<<u<<" is set as:"<<finish[u]<<endl;
+	return false;
+}
+
+bool dfs(vector<list<int> > &graph, int u){
+	visited[u]=true;
+	cout<<"u:"<<u<<endl;
+	list<int>::iterator itr;
+	recstack[u]=true;
+	for(itr=graph[u].begin();itr!=graph[u].end();itr++){
+		int v=(*itr);
+		if(!visited[v] && dfs(graph,v)){
+			return true;
+		}
+		else if(recstack[v]){
+			return true;
+		}
+	}
+	recstack[u]=false;
 	return false;
 }
 
 bool hasCycle(vector<list<int> > &graph){
 	int n=graph.size();
 	visited.resize(n,false);
-	start.resize(n,0);
-	finish.resize(n,0);
-	counter=0;
+	recstack.resize(n,false);
 	for(int i=0;i<n;i++){
 		cout<<"i:"<<i<<endl;
 		if(!visited[i]){
