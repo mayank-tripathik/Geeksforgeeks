@@ -30,7 +30,6 @@ bool dfsIterative(vector<list<int> > &graph, int u){
 					s.push(v);
 				}
 				else if(color[v]==GRAY){
-					cout<<"cycle exits!\n";
 					return true;
 				}
 			}
