@@ -9,7 +9,7 @@ bool dfs(vector<list<int> > &graph, int u, int parent){
 	for(itr=graph[u].begin();itr!=graph[u].end();itr++){
 		int v=(*itr);
 		if(!visited[v])
-			dfs(graph,v,u);
+			return dfs(graph,v,u);
 		else if(v!=parent)
 			return true;
 	}
