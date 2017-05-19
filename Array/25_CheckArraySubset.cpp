@@ -77,6 +77,7 @@ bool isSubsetOf(vector<int> &arr2, vector<int> &arr1){
 				hash[arr2[i]]--;
 		}
 	}
+	return true;
 }
 
 int main(){
