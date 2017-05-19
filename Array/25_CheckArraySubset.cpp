@@ -1,3 +1,13 @@
+/* 
+ * Problem : Given two unsorted arrays, arr1 of size m and arr2 of size n, find whether arr2 is a subset of arr1.
+ * Solution: Naive: O(n^2), pick each element of arr2 and check its presence in arr1.
+ * Method 1: Sort arr1 and then check each element of arr2 in arr1 using binary search. Comeplxity:O(mlogm+nlogm)
+ * Method 2: Sort both arrays, and then check both using modified merge procedure. Complexity: O(nlogn+mlogm)
+ * Method 3: Hash all elements of arr1 along with their frequency, and then pick each element of arr2 and check it in hash
+ * and accordingly decrease their frequency. If any of them not found, return false. Complexity : O(m+n), AS: O(R) where R
+ * is range of numbers
+ */
+
 #include<bits/stdc++.h>
 using namespace std;
 
