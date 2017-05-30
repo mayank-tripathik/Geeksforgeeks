@@ -9,7 +9,8 @@ int numberOfDaysWhenAllRotten(){
 	queue<pair<int,int> > q;
 	// initializing the rotten matrix, initially all are not rotten, used to check no orange is rotten more than once
 	memset(rotten,false,sizeof(rotten));
-	// variable that will count number of 1 in matrix in initially, used to check at last whether all oranges are rotten or not
+	// variable that will count number of 1 in matrix in initially
+	// It is used to check at last whether all oranges are rotten or not
 	int totalNotRotten=0;
 	for(int i=0;i<N;i++){
 		for(int j=0;j<M;j++){
@@ -28,8 +29,9 @@ int numberOfDaysWhenAllRotten(){
 	while(!q.empty()){
 		int numberofRottenAtThisDay=q.size();
 		days++;
-		// This loop will pop oranges that are already rotten, and pushes those adjacent oranges that are rotten by them on that day
-		// This will also decrease number of 1 effectively, which we can check at last to see if all 1's are rotted or not
+		// This loop will pop oranges that are already rotten, and pushes those adjacent oranges that are rotten by 
+		// them on that day
+		// This will also decrease number of 1 effectively, which we can check at last to see if all 1's are rotted
 		while(numberofRottenAtThisDay--){
 			pair<int,int> cell=q.front();
 			int i=cell.first;
