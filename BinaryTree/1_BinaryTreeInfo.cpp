@@ -22,6 +22,30 @@ void inorder(node *root){
 	cout<<root->value<<" ";
 	inorder(root->right);
 }
+
+void iterativeInorder(node *root){
+	stack<node *> s;
+	node *current=root;
+	while(current || !s.empty())
+	{
+		// Traverse to extreme left, by pushing every node encountered on the way
+		if(current)
+		{
+			s.push(current);
+			current=current->left;
+		}
+		// if we are at extreme left, pop node from stack and print its value, and make current as its right subtree
+		// if rightsubtree is null, above if(current) loop will not execute, resulting into another pop and so on.
+		else
+		{
+			node *temp=s.top();
+			cout<<temp->value<<" ";
+			s.pop();
+			current=temp->right;
+		}
+	}
+}
+
 void preorder(node *root){
 	if(root==NULL)
 		return;
@@ -29,6 +53,21 @@ void preorder(node *root){
 	preorder(root->left);
 	preorder(root->right);
 }
+
+void iterativePreorder(node *root){
+	stack<node *> s;
+	s.push(root);
+	while(!s.empty()){
+		node *temp=s.top();
+		s.pop();
+		cout<<temp->value<<" ";
+		if(temp->right)
+			s.push(temp->right);
+		if(temp->left)
+			s.push(temp->left);
+	}
+}
+
 void postorder(node *root){
 	if(root==NULL)
 		return;
@@ -37,6 +76,82 @@ void postorder(node *root){
 	cout<<root->value<<" ";
 }
 
+void iterativePostorder(node *root){
+	stack<node*> s1,s2;
+	s1.push(root);
+	while(!s1.empty()){
+		node *temp=s1.top();
+		if(temp->left || temp->right){
+			if(!s2.empty() && s1.top()==s2.top()){
+				s1.pop();
+				s2.pop();
+				cout<<temp->value<<" ";
+			}
+			else{
+				if(temp->right)
+					s1.push(temp->right);
+				if(temp->left)
+					s1.push(temp->left);
+				s2.push(temp);
+			}
+		}
+		else{
+			s1.pop();
+			cout<<temp->value<<" ";
+		}
+	}
+}
+
+void iterativePostorder(node *root){
+	stack<node*> s1,s2;
+	s1.push(root);
+	while(!s1.empty()){
+		node *temp=s1.top();
+		s1.pop();
+		if(temp->left)
+			s1.push(temp->left);
+		if(temp->right)
+			s1.push(temp->right);
+		s2.push(temp);
+	}
+	while(!s2.empty()){
+		cout<<s2.top()->value<<" ";
+		s2.pop();
+	}
+}
+
+void iterativePostorder(node* root)
+{
+	if(root==NULL)
+		return;
+	stack<node *> s;
+	do{
+		while(root){
+			if(root->right){
+				s.push(root->right);
+				//cout<<root->right->value<<" is pushed\n";
+			}
+			s.push(root);
+			//cout<<root->value<<" is pushed\n";
+			root=root->left;
+		}
+		root=s.top();
+		s.pop();
+		//cout<<root->value<<" is popped\n";
+		if(root->right && !s.empty() && s.top()==root->right){
+			//cout<<(s.top())->value<<" is popped\n";
+			s.pop();
+			s.push(root);
+			//cout<<root->value<<" is pushed\n";
+			root=root->right;
+		}
+		else{
+			cout<<root->value<<" ";
+			//cout<<"root is set as null\n";
+			root=NULL;
+		}
+	}while(!s.empty());
+}
 // BFS traversal of tree aka Level order traversal. Print all tree nodes level by level
 void levelOrderTraversal(node *root){
 	queue<node*> q;
@@ -118,13 +233,17 @@ int sizeOfTree(node *root){
 
 int main(){
 	//node *binaryTree=newNode(11);
-	node *binaryTree=new node(11);
+	node *binaryTree=new node(1);
 	binaryTree->left=new node(2);
 	binaryTree->right=new node(3);
-	binaryTree->left->left=new node(12);
-	binaryTree->left->right=new node(10);
-	binaryTree->right->left=new node(5);
-	binaryTree->right->right=new node(4);
-	allTraversals(binaryTree);
-	cout<<"Tree size:"<<sizeOfTree(binaryTree)<<endl;
+	binaryTree->left->left=new node(4);
+	binaryTree->left->right=new node(5);
+	//binaryTree->right->left=new node(5);
+	binaryTree->right->right=new node(7);
+	binaryTree->left->right->right=new node(8);
+	//allTraversals(binaryTree);
+	//cout<<"Tree size:"<<sizeOfTree(binaryTree)<<endl;
+	//iterativePreorder(binaryTree);
+	//iterativeInorder(binaryTree);
+	iterativePostorder(binaryTree);
 }
