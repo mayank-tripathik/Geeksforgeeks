@@ -230,6 +230,35 @@ int sizeOfTree(node *root){
 		return sizeOfTree(root->left)+sizeOfTree(root->right)+1;
 }
 
+int heightIterative(node *root){
+	queue<node *> q;
+	q.push(root);
+	int height=0;
+	while(!q.empty()){
+		int numberOfNodesAtCurrentLevel=q.size();
+		height++;
+		while(numberOfNodesAtCurrentLevel--){
+			node *temp=q.front();
+			q.pop();
+			if(temp->left){
+				q.push(temp->left);
+			}
+			if(temp->right){
+				q.push(temp->right);
+			}
+		}
+	}
+	return height;
+}
+
+int heightRecursive(node *root){
+	if(root==NULL)
+		return 0;
+	else{
+		cout<<root->value<<" ";
+		return max(heightRecursive(root->left),heightRecursive(root->right))+1;
+	}
+}
 
 int main(){
 	//node *binaryTree=newNode(11);
@@ -238,12 +267,13 @@ int main(){
 	binaryTree->right=new node(3);
 	binaryTree->left->left=new node(4);
 	binaryTree->left->right=new node(5);
-	//binaryTree->right->left=new node(5);
 	binaryTree->right->right=new node(7);
 	binaryTree->left->right->right=new node(8);
-	//allTraversals(binaryTree);
-	//cout<<"Tree size:"<<sizeOfTree(binaryTree)<<endl;
-	//iterativePreorder(binaryTree);
-	//iterativeInorder(binaryTree);
+	allTraversals(binaryTree);
+	cout<<"Tree size:"<<sizeOfTree(binaryTree)<<endl;
+	iterativePreorder(binaryTree);
+	iterativeInorder(binaryTree);
 	iterativePostorder(binaryTree);
+	cout<<"height is:"<<heightIterative(binaryTree)<<endl;
+	cout<<"height is:"<<heightRecursive(binaryTree)<<endl;
 }
