@@ -34,7 +34,6 @@ int numberOfDaysWhenAllRotten(){
 			pair<int,int> cell=q.front();
 			int i=cell.first;
 			int j=cell.second;
-			cout<<"i:"<<i<<",j:"<<j<<" , el:"<<matrix[i][j]<<" is popped\n"<<endl;
 			q.pop();
 			// pushes the cell on top if it has mango and is not rotten
 			if(i-1>=0 && !rotten[i-1][j] && matrix[i-1][j]==1){
