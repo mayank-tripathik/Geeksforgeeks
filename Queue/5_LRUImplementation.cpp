@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// LRU implementation using queue and a stack
+//LRU implementation using queue and a stack
 class LRU{
 	deque<int> q;
 	vector<bool> pageInSlot;
@@ -75,10 +75,8 @@ public:
 		map<int,list<int>::iterator>::iterator itr;
 		itr=hash.find(page);
 		if(itr!=hash.end()){
-			cout<<"insdie found\n";
 			list<int>::iterator temp=(*itr).second;
 			int value=(*temp);
-			cout<<"value:"<<value<<endl;
 			hash.erase(itr);
 			cache.erase(temp);
 		 	cache.push_front(page);
@@ -86,14 +84,11 @@ public:
 		}
 		else{
 			if(slots>size){
-				cout<<"insdie less\n";
 				cache.push_front(page);
 				hash.insert(make_pair(page,cache.begin()));
 				size++;
-				cout<<"size if incremented to:"<<size<<endl;
 			}
 			else{
-				cout<<"insdie equal\n";
 				cache.pop_back();
 				cache.push_front(page);
 				hash.insert(make_pair(page,cache.begin()));
@@ -105,6 +100,7 @@ public:
 		return pageFaults;
 	}
 	void print(){
+		cout<<"Cache is:";
 		list<int>::iterator itr;
 		for( itr=cache.begin();itr!=cache.end();itr++)
 			cout<<(*itr)<<" ";
@@ -124,7 +120,6 @@ int main(){
 		cin>>page;
 		cout<<"Page Requested:"<<page<<endl;
 		cache.insertPage(page);
-		cout<<"Cache is:";
 		cache.print();
 		cout<<endl;
 	}
