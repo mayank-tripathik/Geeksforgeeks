@@ -72,9 +72,10 @@ ListNode* findIntersection(ListNode* head1, ListNode* head2){
 		temp1=temp1->next;
 		temp2=temp2->next;
 	}
-	// Means first list1 is longer than list2 as list1 pointer yet not reaches NULL
+	// Means first list is longer than second as temp1 pointer yet not reaches NULL
 	if(temp1)
 		return checkCommon(head1,head2,temp1);
+	// Means second list is longer than first as temp2 pointer yet not reaches NULL
 	else
 		return checkCommon(head2,head1,temp2);
 }
