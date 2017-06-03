@@ -16,6 +16,7 @@
  * width of level 2 is 2,
  * width of level 3 is 3
  * width of level 4 is 2. 
+ * Solution: We can use level by level order traversal to count number of nodes at each level and maintaining the max
 */
 
 
