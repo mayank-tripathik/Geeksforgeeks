@@ -1,3 +1,8 @@
+/*
+ * Given a binary tree and a sum, check whether there exists any path fromt root to leaf having sum as given sum
+ * TC: O(n)
+ */
+
 #include<bits/stdc++.h>
 #include<queue>
 using namespace std;
@@ -19,7 +24,7 @@ public:
 bool printAllRootToLeafPathHelper(TreeNode*root, int sum, int value){
   // if root is null return
 	if(root==NULL){
-		return;
+		return false;
 	}
   // If root has any child
 	if(root->left || root->right){
@@ -32,7 +37,7 @@ bool printAllRootToLeafPathHelper(TreeNode*root, int sum, int value){
 		if(root->right){
 			ans=ans || printAllRootToLeafPathHelper(root->right,sum+(root->right->value),value);
 		}
-    If any of the above calls return true, then return true, else return false
+    	//If any of the above calls return true, then return true, else return false
 		return ans;
 	}
   // At this point leaf is encountered, so check sum with the given value and return accordingly
