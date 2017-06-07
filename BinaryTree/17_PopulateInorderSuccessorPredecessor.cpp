@@ -1,6 +1,15 @@
 /*
  * Given a binary tree with one extra field called next that points to inorder successor of it. Populate it so that every node
  * next field point to their inorder successor
+ *  What is inorder successor?
+    Suppose binary tree is
+              10
+            /   \
+          8      12
+        /
+      3
+    Then inorder successor of 3 is 8, 8 is 10, 10 is 12 and so on.
+ * similarly we can have inorder predeccsor
  * We can use inorder traversal to populate the next field by just keep tracking previously visited node, & make next of current
  * node being visited pointing to it
  * TC:O(n)
