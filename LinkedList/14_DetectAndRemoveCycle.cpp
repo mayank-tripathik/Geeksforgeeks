@@ -52,30 +52,30 @@ bool detectAndRemoveLoop(node *head)
 		return false;
 	// Slow and fast pointers, where slow moves by one step and fast moves by two steps
 	node *slow = head;
-    node *fast = head->next;
+	node *fast = head->next;
     // check for loop, loop exists if slow is equal to fast at any point
-    while(fast && fast->next){
-    	if(slow==fast)
-    		break;
-    	slow=slow->next;
-    	fast=fast->next->next;
-    }
+	while(fast && fast->next){
+		if(slow==fast)
+			break;
+		slow=slow->next;
+		fast=fast->next->next;
+	}
     //Loop detecting condition check 
-    if(slow == fast)
-    {
+	if(slow == fast)
+	{
     	// Make slow pointer pointing to head and now move both pointer
-    	slow=head;
+		slow=head;
     	// If slow is equal to fast->next, means slow is the starting point of loop 
-    	while(slow!=fast->next){
-    		slow=slow->next;
-    		fast=fast->next;
-    	}
+		while(slow!=fast->next){
+			slow=slow->next;
+			fast=fast->next;
+		}
     	// Make fast->next, which is pointing to slow here to NULL to break the loop
-    	fast->next=NULL;
-    	return true;
-    }
-    else
-    	return false;
+		fast->next=NULL;
+		return true;
+	}
+	else
+		return false;
 }
 
 int main(){
