@@ -6,6 +6,10 @@
  * Traverse the list from beginning and stop at kth node. Store pointer to kth node. We can get (k+1)th node using kthNode->next. 
  * Keep traversing till end and store pointer to last node also. Finally, change pointers as stated above.
  * TC:O(n)
+ * Another method:-
+	a) Reverse the linklist from 1 to K
+	b) Reverse the linklist from K+1 to N
+	c) And then reverse the whole Linklist.
  */
 
 #include<bits/stdc++.h>
