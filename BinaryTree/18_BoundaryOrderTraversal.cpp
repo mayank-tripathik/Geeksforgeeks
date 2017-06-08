@@ -8,12 +8,10 @@
     3. Print the right boundary in bottom-up manner.
  * We have to make sure that no node is printed more than once
  * For this we can print root once. Then we will print the left boundary(except the last leaf node) in top down manner. 
- * Then we will printall leaves. Then we will print right boundary(except the last leaf node) in bottom up manner
+ * Then we will print all leaves. Then we will print right boundary(except the last leaf node) in bottom up manner
  * TC:O(n)
  */
-  
-
-We need to take care of one thing that nodes are not printed again. e.g. The left most node is also the leaf node of the tree.
+ 
 
 #include<bits/stdc++.h>
 using namespace std;
