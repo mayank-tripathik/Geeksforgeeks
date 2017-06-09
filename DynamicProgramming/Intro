@@ -1,0 +1,68 @@
+*Dynamic programming is all about ordering your computations in a way that you avoid recalculating duplicate work. You have a main problem (the root of your tree of subproblems), and subproblems (subtrees). The subproblems typically repeat and overlap.
+
+*There are at least two main techniques of dynamic programming, which are not mutually exclusive:
+
+*Memoization - This is a laissez-faire approach: You assume you have already computed all subproblems. You have no idea the optimal evaluation order. You typically perform a recursive call (or some iterative equivalent) from the root, and either hope you will get close to the optimal evaluation order, or you have a proof that you will get the optimal evaluation order. You ensure that the recursive call never recomputes a subproblem because you cache the results, and thus duplicate sub-trees are not recomputed.
+
+*Tabulation - You can also think of dynamic programming as a "table-filling" algorithm (though usually multidimensional, this 'table' may have non-Euclidean geometry in very rare cases). This is like memoization but more active, and involves one additional step: You must pick, ahead of time, exactly in which order you will do your computations (this is not to imply the order must be static, but that you have much more flexibility than memoization).
+
+Ease of coding
+--------------
+
+*Memoization is very easy to code (you can generally* write a "memoizer" annotation or wrapper function that automatically does it for you), and should be your first line of approach. The downside of tabulation is that you have to come up with an ordering.
+
+*(this is actually only easy if you are writing the function yourself, and/or coding in an impure/non-functional programming language... for example if someone already wrote a precompiled fib function, it necessarily makes recursive calls to itself, and you can't magically memoize the function without ensuring those recursive calls call your new memoized function (and not the original unmemoized function))
+
+*Recursiveness
+
+Note that both top-down and bottom-up can be implemented with recursion or iterative table-filling, though it may not be natural.
+Practical concerns
+
+With memoization, if the tree is very deep (e.g. fib(10^6)), you will run out of stack space, because each delayed computation must be put on the stack, and you will have 10^6 of them.
+
+
+Real life scenario
+------------------
+
+I don't think this is specific to dynamic programming. I once saw a video of some professor on youtube explaining it this way. Let's say your goal is to take over the world. How can we approach that?
+
+1.) Top-down: First you say i'm gonna take over the world. How will i do that? You say i'm gonna take over america. How will i do that? I'm gonna take over south america first. How will i do that? I'm going to take over Brasil first. etc etc.
+
+2.) Bottom-up: You say i'm gonna first take over Brasil. Then i'm gonna take over Argentina, then all other countries in south america etc etc.
+
+see the difference?
+In Top-down you start building the big solution right away by explaining how you build it from smaller solutions (take over america = take over south america + take over north america).
+In Bottom-up you start with the small solutions and build up.
+
+Top down vs bottom up
+---------------------
+ Going bottom-up is a way to avoid recursion, saving the memory cost that recursion incurs when it builds up the call stack.
+
+Put simply, a bottom-up algorithm "starts from the beginning," while a recursive algorithm often "starts from the end and works backwards."
+
+For example, if we wanted to multiply all the numbers in the range 1...n1...n1...n, we could use this cute, top-down, recursive one-liner:
+
+  public int product1ToN(int n) {
+    // we assume n >= 1
+    return (n > 1) ? (n * product1ToN(n-1)) : 1;
+}
+
+This approach has a problem: it builds up a call stack of size O(n)O(n)O(n), which makes our total memory cost O(n)O(n)O(n). This makes it vulnerable to a stack overflow error, where the call stack gets too big and runs out of space. 
+
+To use the bottom up method you need to be able to efficiently determine what the "bottom" is, which usually means you need a heavily constrained problem space. If you know what the lowest level calculations are going to be and the dependency order going upward, it makes sense to iteratively do them in the proper order and store those results. Factorials, naive Fibonacci and the Euler recurrence relation for partitions are all good examples of problems suited to this approach.
+
+When you solve problem from bottom to up you visit all states and some of which plays no role in determining the result but in top-down approach you visit limited states (which are useful) so it takes less time that is why it is consider better.
+Take an example of dp problem , suppose a grid is there in which you want to reach bottom-right corner from upper-left corner and you can go right and down only,
+
+then in bottom up approach you will traverse whole grid and fill the result  but in case of
+top-down  most of the times only those cells which are nearby to main diagonal will be traversed which lower down the time a lot. 
+
+but as top-down approach uses recursion, some extra overhead also happens.
+
+You cannot say that the one is better over the other, both techniques have their own perks, Here are a few things about the topdown approach:
+
+    In most cases it's easier to come up with a recursive topdown solution than a bottomup one. Also, it's simpler to code.
+     
+    Bottomup requires starting from the base cases and than completing filling the entire table i.e., all the subproblems which might be even not required to get the answer to our problem. Where as, recursive topdown does not necessarily recur for all the subproblems ( states of dp) depending on our base conditions.
+     
+    With memoization or topdown dp, if the recursive tree is very deep ( e.g. say fib(10^6)), you will run out of stack space, because each delayed computation must be put on the stack. So, here bottomup approach will be well suited.
