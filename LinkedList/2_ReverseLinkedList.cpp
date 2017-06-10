@@ -40,6 +40,7 @@ class LL{
 		// Initializing three pointers values
 		previous=NULL;
 		current=head;
+		nxt=head;
 		while(nxt){
 			// nxt is always one step ahead to current
 			nxt=current->next;
