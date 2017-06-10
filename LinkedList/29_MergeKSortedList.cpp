@@ -10,6 +10,7 @@
  * A Simple Solution is to initialize result as first list. Now traverse all lists starting from second list. 
  * Insert every node of currently traversed list into result in a sorted way. Time complexity of this solution is O(N2) 
  * where N is total number of nodes, i.e., N = kn.
+ * Another sol: Create new array of size n*k and sort it using merge sort. TC: O(nk Lognk)
  * A Better solution is to use Min Heap based solution which is discussed here for arrays. Time complexity of this 
  * solution would be O(nk Log k)
  * Following program is the implementation divide and Conquer approach. This approach doesn’t require extra space for 
