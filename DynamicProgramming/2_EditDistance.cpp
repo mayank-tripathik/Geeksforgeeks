@@ -9,7 +9,7 @@
     Input:   str1 = "cat", str2 = "cut"
     Output:  1
     We can convert str1 into str2 by replacing 'a' with 'u'.
- * Suppose we want to convert str1 to str1
+ * Suppose we want to convert str2 to str1
  * Think of base case. If one of the string is empty, then cost required is always equal to the length of other string. Why?
  * because we can either add all the char of non empty string to empty string, or we can remove all chars of nonempty string to
  * make it empty. Since cost of both removal and add is same!
@@ -34,6 +34,8 @@
  * temporary array that stores results of subpriblems.
  * We can avoid using 2D array of size O(n*m) because we need only two rows at each stage.Two array will thus suffices.
  * TC:O(m*n), Extra Space:O(2*n) if we just want length. Tracking requires whole matrix of size O(n*m)
+ * Application : Applications: There are many practical applications of edit distance algorithm, refer Lucene API for sample. 
+ * Another example, display all the words in a dictionary that are near proximity to a given word\incorrectly spelled word.
  */
  
 
