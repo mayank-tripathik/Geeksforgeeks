@@ -14,7 +14,6 @@
  * To solve it as a activity selection problem, consider the first element of a pair as start time in activity selection 
  * problem, and the second element of pair as end time.
  */
-
 #include <bits/stdc++.h>
 using namespace std;
 
