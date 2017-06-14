@@ -12,7 +12,6 @@
     1    4     8
         /     / \ 
        3     7   9  
-     */
 
  * We can use simple level order traversal to keep track of odd and even level sum and then return the difference of both
  * TC:O(n)
