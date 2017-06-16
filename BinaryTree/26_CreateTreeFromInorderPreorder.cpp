@@ -26,7 +26,7 @@
   * Algorithm:
     1) Pick an element from Preorder.
     2) Create a new tree node(say temp) with the data as picked element.
-    3) Find the picked element’s index in Inorder. Let the index be inIndex.
+    3) Find the picked element’s index in Inorder. Let the index be inorderIndex.
     4) Increment a Preorder Index Variable (preorderIndex in below code) to pick next element in next recursive call.
     4) Call constructTree for elements before inorderIndex and make the constructed tree as left subtree of temp.
     5) Call constructTree for elements after inorderIndex and make the constructed tree as right subtree of temp.
