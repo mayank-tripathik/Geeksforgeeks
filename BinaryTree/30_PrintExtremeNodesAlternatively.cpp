@@ -47,8 +47,10 @@ void printExtremeNodesAlternatively(TreeNode* root)
 		while(k--){
 			TreeNode* parent=q.front();
 			q.pop();
+			// if level is even, print the first node of this level
 			if(evenLevel && k==nodesAtThisLevel-1)
 				cout<<parent->value<<" ";
+			// if level is odd print the last node of this level
 			if(!evenLevel && k==0)
 				cout<<parent->value<<" ";
 			if(parent->left)
