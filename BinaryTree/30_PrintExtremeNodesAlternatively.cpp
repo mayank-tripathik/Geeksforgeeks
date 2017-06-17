@@ -25,25 +25,24 @@ public:
 	
 };
 
-// Just maintain sum at each level at update the maximum sum acccordingly
 void printExtremeNodesAlternatively(TreeNode* root)
 {
 	// If tree is empty, nothing to print
 	if(root==NULL)
 		return;
 	queue<TreeNode*> q;
-  // Insert first node in queue
+    // Insert first node in queue
 	q.push(root);
-  // This flag indicates if level is even or not. False value indicates level is odd
-  // It is toggled after traversal of each level so that we can use it to decide which node
-  // to print : extreme right or extreame left. As mentioned in question, if we assume root at level 1
-  // we have to print extreme left node at even level and extreme right node at odd level
+    // This flag indicates if level is even or not. False value indicates level is odd
+    // It is toggled after traversal of each level so that we can use it to decide which node
+    // to print : extreme right or extreame left. As mentioned in question, if we assume root at level 1
+    // we have to print extreme left node at even level and extreme right node at odd level
 	bool evenLevel=false;
-  // Typical level order traversal implementation
+    // Typical level order traversal implementation
 	while(!q.empty()){
 		int nodesAtThisLevel=q.size();
-    // This variable is used to track which node we are printing. Depending upon whether level is odd
-    // or even we can print the extreme left or extreme right node
+        // This variable is used to track which node we are printing. Depending upon whether level is odd
+        // or even we can print the extreme left or extreme right node
 		int k=nodesAtThisLevel;
 		while(k--){
 			TreeNode* parent=q.front();
@@ -57,7 +56,7 @@ void printExtremeNodesAlternatively(TreeNode* root)
 			if(parent->right)
 				q.push(parent->right);
 		}
-    // Level toggled, so type of level changes for next level traversal
+        // Level toggled, so type of level changes for next level traversal
 		evenLevel=!evenLevel;
 	}
 }
