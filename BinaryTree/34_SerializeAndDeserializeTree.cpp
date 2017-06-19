@@ -124,3 +124,31 @@ int main(){
 	inorder(rootTree);
 	cout<<endl;
 }
+
+
+
+/** Serialize deserialize using preorder*/
+void serialize(node *root, int *i, int arr[])
+{
+    if(root==NULL)
+    {
+        arr[(*i)++]=-1;
+        return;
+    }
+    arr[(*i)++]=root->data;
+    serialize(root->left,i,arr);
+    serialize(root->right,i,arr);
+ 
+}
+node *deserialize(int arr[], int size, int *i, node *root)
+{
+    if((*i)==size||arr[*i]==-1)
+    {
+        (*i)++;
+        return NULL;
+    }
+     root=newnode(arr[(*i)++]);
+     root->left=deserialize(arr,size,i,root->left);
+     root->right=deserialize(arr,size,i,root->right);
+     return root;
+}
