@@ -3,6 +3,10 @@
  * For example, if the input number is “2 3 5 4 5”, the output should be “2 3 6 3 2”.
  * And if the input number is “9 9 9”, the output should be “1 0 0 1”.
  * The input is assumed to be an array. Every entry in array represents a digit in input number.
+ * The naive algorithm is to increment the number until we get a palindrome. So at every iteration we check whether the new 
+ * number is palindrome or not. 
+ * The complexity depends on the number of digits in the number. If the number has 6 digits, we may have to increment it 999 
+ * times to get the smallest palindrome in the worst case (999000 to 999999). 
  * Idea:  Since a palindrome is effectively "mirrored" around the central digit(s) of a number, we can reflect the first half 
  * of the number onto the second half. If the number of digits in the number is even - there will be more than one "central" 
  * element. So for example, given an input number of say, 1594 - we mirror it to 1551. 
