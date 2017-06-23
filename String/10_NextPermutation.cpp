@@ -25,9 +25,12 @@
  * make the new suffix as low as possible. 
  * We can avoid sorting and simply reverse the suffix, because the replaced element respects the weakly decreasing order.
  * Summarizing, the basic idea is to divide string into some prefix and suffix so that we have to change as little as possible
- * to get a larger number. Once we get prefix and suffix, we have to increase prefix in such a way that increase is minimal. we
- * have done this by swapping the last element of prefix with smallest element larger than it in suffix. Then we make the suffix
- * as small as possible by sorting/reversing it
+ * to get a larger number. Such suffix would be the longest non-icreasing suffix.Once we get prefix and suffix, we have to 
+ * increase prefix in such a way that increase is minimal. we have done this by swapping the last element of prefix with 
+ * smallest element larger than it in suffix. Then we make the suffix as small as possible by sorting/reversing it.
+ * TC:O(n)
+ * Similar logic can be used for generating previous permutation, where we first search for longest non-decreasing suffix
+ * and then for search largest element smaller than pivot in the right and then swapping and reversing
  */
 
 #include<iostream>
@@ -42,9 +45,9 @@ void reverse(string &str, int start, int end){
 	}
 }
 
-// This function will print the next permuation that is possible from the digits of the given number
-// if next permuatation is not possible, "Not Possible" is printed
-void nextPermutation(string &str){
+// This function will change the given string to next permuation that is possible from the digits of the given number
+// and returns true. If next permuatation is not possible, false is returned
+bool nextPermutation(string &str){
 	int i;
 	// Try to find last index i in string (i.e first from right), such that str[i]<str[i+1]
 	// That is search for first index that violates the ascending property from right
@@ -66,13 +69,14 @@ void nextPermutation(string &str){
 		}
 		// swap these two numbers
 		swap(str[i],str[k]);
-		// reverse all the digits to the right of i'th number
+		// reverse all the digits to the right of i'th number. Since digits to right of i
+		// are descending, reversing it produces the smallest possible number possible with suffix
 		reverse(str,i+1,str.size()-1);
-		cout<<str<<endl;
+		return true;
 	}
-	// if i is less than 0, means no such number exists, hence print not possible
+	// if i is less than 0, means no such number exists, hence return true;
 	else
-		cout<<"Not Possible\n";
+		return false;
 }
 
 // This is the quick way of getting next permuation through the next_permutation algo present
@@ -86,6 +90,40 @@ void nextPermutationSTL(string &str){
 		cout << str << endl;
 }
 
+// This function will change the given string to previous permuation that is possible from the digits of the given number
+// and returns true. If previous permuatation is not possible, false is returned
+bool prevPermutation(string &str){
+	int i;
+	// Try to find last index i in string (i.e first from right), such that str[i]>str[i+1]
+	// That is search for first index that violates the descending property from right
+	for(i=str.size()-2;i>=0;i--){
+		if(str[i]>str[i+1]){
+			break;
+		}
+	}
+	// If i>=0, means such index exists. If such index exists, then find the largest number smaller 
+	// than it in its right. Since numbers right to i are ascending, to find the largest smaller number
+	// we can start from the extreme right and go on till i'th index and report the first character that 
+	// is smaller than str[i]. It will be the largest number smaller than str[i]
+	// We can search such nuumber using either binary search or linear. Here we are going linear
+	if(i>=0){
+		int k;
+		for(k=str.size()-1;k>i;k--){
+			if(str[k]<str[i])
+				break;
+		}
+		// swap these two numbers
+		swap(str[i],str[k]);
+		// reverse all the digits to the right of i'th number. Since digits to right of i
+		// are ascending, reversing it produces the largest possible number possible with suffix
+		reverse(str,i+1,str.size()-1);
+		return true;
+	}
+	// if i is less than 0, means no such number exists, hence return false
+	else
+		return false;
+}
+
 int main()
 {
 	int test;
@@ -93,8 +131,12 @@ int main()
 	while(test--){
 		string str;
 		cin>>str;
-		nextPermutation(str);
-		nextPermutationSTL(str);
+		//nextPermutationSTL(str);
+		while(prevPermutation(str))
+			cout<<str<<endl;
+		while(nextPermutation(str))
+			cout<<str<<endl;
 	}
 	return 0;
 }
+
