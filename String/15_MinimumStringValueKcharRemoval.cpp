@@ -51,7 +51,10 @@ int minValue(string &str, int k){
 	while(!q.empty()){
 		int currentMin=q.top();
 		q.pop();
-		sum+=pow(currentMin,2);
+		// This check is used to ensure that no negative value contributes to sum
+		// Negative value is possible if given k is greater than string size
+		if(currentMin>0)
+			sum+=pow(currentMin,2);
 	}
 	// return answer
 	return sum;
