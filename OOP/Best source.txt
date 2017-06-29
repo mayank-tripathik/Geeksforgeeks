@@ -1,1 +1,4 @@
 http://thispointer.com/
+http://cs.brown.edu/~jak/proglang/cpp/stltut/tut.html
+http://www.learncpp.com/
+https://channel9.msdn.com/Series/C9-Lectures-Stephan-T-Lavavej-Standard-Template-Library-STL-/C9-Lectures-Introduction-to-STL-with-Stephan-T-Lavavej
