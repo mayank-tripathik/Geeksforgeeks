@@ -2,3 +2,5 @@ http://thispointer.com/
 http://cs.brown.edu/~jak/proglang/cpp/stltut/tut.html
 http://www.learncpp.com/
 https://channel9.msdn.com/Series/C9-Lectures-Stephan-T-Lavavej-Standard-Template-Library-STL-/C9-Lectures-Introduction-to-STL-with-Stephan-T-Lavavej
+https://www.youtube.com/watch?v=M2zgAEj3sBc&index=25&list=PLkyoHqr6pb7v8sehaCL5W23VIi93fBIWc
+http://www.codecogs.com/library/computing/stl/containers/adaptors/priority-queue.php
