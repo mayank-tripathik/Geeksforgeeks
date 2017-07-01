@@ -1,0 +1,3 @@
+http://graphics.stanford.edu/~seander/bithacks.html
+http://bits.stephan-brumme.com/
+http://www.hackersdelight.org/
