@@ -6,7 +6,7 @@
  * Efficient solution is to use hashing. We can create an array of size of max element of a. Then we can find frequency
  * of every element of b. We can then calculate the required count using cumulative frequency sum
  * TC:O(n) . Extra space: O(n)
- * /
+ */
 
 #include<iostream>
 #include<vector>
