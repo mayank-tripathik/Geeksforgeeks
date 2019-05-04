@@ -1,6 +1,5 @@
 /*
- * Given two numbers in the form of linked list, create a new linked list sum , that contains sum of these two numbers
- * For simple representation complexity is O(max(m,n)) where m and n are the size of lists
+ * Sort given numbers in linked list
  */
 
 #include<bits/stdc++.h>
